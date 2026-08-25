@@ -274,11 +274,9 @@ h1 {
 
 .cta {
   margin: 104px auto 0;
-  padding: 72px 24px 80px;
+  padding: 72px 24px 56px;
   text-align: center;
-  background: rgba(255, 252, 246, 0.55);
-  border-top: 1px solid var(--hairline);
-  border-bottom: 1px solid var(--hairline);
+  background: var(--bg-tint);
 }
 
 .cta h2 {
@@ -292,16 +290,21 @@ h1 {
 /* ---------- footer ---------- */
 
 .foot {
+  /* Continues the CTA's beige band so the two read as one closing block. */
+  background: var(--bg-tint);
+  padding: 0 24px 44px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.foot-inner {
   max-width: 1080px;
   margin: 0 auto;
-  padding: 30px 24px 44px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  font-size: 13px;
-  color: var(--muted);
 }
 
 .foot .copy { margin: 0; }
@@ -480,10 +483,11 @@ h1 {
 
   .cta { margin-top: 76px; padding: 60px 22px 64px; }
 
-  .foot {
+  .foot { padding: 0 22px 40px; }
+
+  .foot-inner {
     flex-direction: column;
     justify-content: center;
     gap: 16px;
-    padding: 28px 22px 40px;
   }
 }
