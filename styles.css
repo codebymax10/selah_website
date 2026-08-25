@@ -41,7 +41,13 @@ body {
    the cream veil over it, and the floor wash that seats the lower content. */
 .paper {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  /* inset:0 sizes to iOS's *small* viewport, so when Safari's toolbar
+     collapses a strip of bare background appears below the texture. */
+  height: 100vh;
+  height: 100lvh;
   z-index: -2;
   background-image: url('assets/parchment.jpg');
   background-size: cover;
