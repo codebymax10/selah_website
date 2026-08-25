@@ -30,6 +30,9 @@ html {
 
 body {
   margin: 0;
+  position: relative;
+  min-height: 100vh;
+  min-height: 100lvh;
   background: var(--bg);
   color: var(--text);
   font-family: var(--sans);
@@ -39,19 +42,17 @@ body {
 }
 
 /* The same watercolor parchment the app's Home screen sits on: the texture,
-   the cream veil over it, and the floor wash that seats the lower content. */
+   the cream veil over it, and the floor wash that seats the lower content.
+   It scrolls with the page (not fixed) so iOS Safari's glass toolbar blurs
+   the real texture instead of guessing a flat tint colour. The tile image is
+   the texture plus its vertical mirror, so repeat-y has no seam. */
 .paper {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  /* inset:0 sizes to iOS's *small* viewport, so when Safari's toolbar
-     collapses a strip of bare background appears below the texture. */
-  height: 100vh;
-  height: 100lvh;
+  position: absolute;
+  inset: 0;
   z-index: -2;
-  background-image: url('assets/parchment.jpg');
-  background-size: cover;
+  background-image: url('assets/parchment-tile.jpg');
+  background-size: 100% auto;
+  background-repeat: repeat-y;
   background-position: center top;
   background-color: var(--bg);
 }
@@ -63,24 +64,6 @@ body {
   background:
     linear-gradient(to bottom, rgba(58, 39, 22, 0) 58%, var(--floor)),
     var(--veil);
-}
-
-/* iOS 26 Safari ignores theme-color and instead tints its toolbar by sampling
-   the background-color of fixed elements touching the viewport edges (pseudo-
-   elements and background images are skipped, so .paper doesn't count). This
-   off-screen strip is the element it samples for the bottom toolbar. */
-.toolbar-tint {
-  position: fixed;
-  bottom: -8px;
-  left: 0;
-  width: 100%;
-  min-height: 12px;
-  /* Must match what the parchment texture actually renders at the bottom of
-     the viewport (not --bg, which is lighter) or the toolbar reads as a pale
-     bar against the page. Safari mutes the sampled colour slightly, so this
-     is nudged a few points lighter than the measured #F0DBC0. */
-  background-color: #F6DFC4;
-  pointer-events: none;
 }
 
 img { max-width: 100%; height: auto; display: block; }
