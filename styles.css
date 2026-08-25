@@ -1,0 +1,473 @@
+/* Selah — landing page
+   Palette mirrors the app (constants/Colors.ts): warm parchment, ink, amber accent. */
+
+:root {
+  --bg: #FAF8F5;
+  --bg-tint: #F5EFE5;
+  --surface: #FFFFFF;
+  --text: #1A1814;
+  --muted: #6E655B;
+  --accent: #C4834A;
+  --hairline: rgba(26, 24, 20, 0.10);
+  --pill: #1A1814;
+  --pill-text: #FFFDF9;
+  --glow: rgba(196, 131, 74, 0.16);
+  --veil: rgba(252, 247, 240, 0.22);
+  --floor: rgba(58, 39, 22, 0.05);
+  --prose: #3B342C;
+  --serif: 'Newsreader', 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+  --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Roboto, Helvetica, Arial, sans-serif;
+}
+
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: light only;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* The same watercolor parchment the app's Home screen sits on: the texture,
+   the cream veil over it, and the floor wash that seats the lower content. */
+.paper {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background-image: url('assets/parchment.jpg');
+  background-size: cover;
+  background-position: center top;
+  background-color: var(--bg);
+}
+
+.paper::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom, rgba(58, 39, 22, 0) 58%, var(--floor)),
+    var(--veil);
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+a { color: inherit; }
+
+/* ---------- nav ---------- */
+
+.nav {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 26px 24px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  font-family: var(--serif);
+  font-size: 21px;
+  letter-spacing: 0.01em;
+}
+
+.brand img { border-radius: 9px; }
+
+.nav-cta {
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 8px 14px;
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.nav-cta:hover { color: var(--accent); border-color: var(--accent); }
+
+/* ---------- hero ---------- */
+
+.hero {
+  position: relative;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 88px 24px 0;
+  text-align: center;
+}
+
+.eyebrow {
+  margin: 0 0 22px;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+h1 {
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(2.4rem, 6.5vw, 4rem);
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+}
+
+.lede {
+  margin: 24px auto 0;
+  max-width: 33em;
+  font-size: 1.05rem;
+  color: var(--muted);
+}
+
+.fineprint {
+  margin: 20px 0 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* ---------- store badges ---------- */
+
+.badges {
+  margin-top: 36px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  padding: 11px 20px 11px 17px;
+  border-radius: 14px;
+  background: var(--pill);
+  color: var(--pill-text);
+  text-decoration: none;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.badge:hover { transform: translateY(-2px); opacity: 0.92; }
+
+.badge-glyph { width: 26px; height: 26px; flex: none; }
+
+.badge-text { display: flex; flex-direction: column; line-height: 1.15; text-align: left; }
+.badge-text small { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.72; }
+.badge-text strong { font-size: 17px; font-weight: 600; letter-spacing: 0.01em; }
+
+/* ---------- screenshots ---------- */
+
+.shots {
+  max-width: 1000px;
+  margin: 72px auto 0;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.shot {
+  width: 30%;
+  max-width: 280px;
+  filter: drop-shadow(0 24px 46px rgba(26, 24, 20, 0.16));
+}
+
+/* The three sit as a slight fan — the middle one lifted, the outer two turned
+   away and tucked a little behind it — rather than three flat rectangles. */
+.shot.side { opacity: 0.94; }
+.shot.left { transform: rotate(-4deg) translateY(14px); margin-right: -3.5%; }
+.shot.right { transform: rotate(4deg) translateY(14px); margin-left: -3.5%; }
+
+.shot.main {
+  position: relative;
+  z-index: 2;
+  width: 34%;
+  max-width: 316px;
+  transform: translateY(-12px);
+}
+
+/* ---------- features ---------- */
+
+.features {
+  max-width: 900px;
+  margin: 104px auto 0;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 44px 56px;
+}
+
+.feature h2 {
+  margin: 0 0 10px;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 1.45rem;
+  letter-spacing: -0.01em;
+}
+
+.feature p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.98rem;
+}
+
+/* ---------- verse ---------- */
+
+.verse {
+  max-width: 720px;
+  margin: 112px auto 0;
+  padding: 0 24px;
+  text-align: center;
+}
+
+.verse blockquote { margin: 0; }
+
+.verse p {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(1.5rem, 3.6vw, 2.1rem);
+  font-weight: 300;
+  line-height: 1.35;
+}
+
+.verse cite {
+  display: block;
+  margin-top: 16px;
+  font-style: normal;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* ---------- closing cta ---------- */
+
+.cta {
+  margin: 104px auto 0;
+  padding: 72px 24px 80px;
+  text-align: center;
+  background: rgba(255, 252, 246, 0.55);
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.cta h2 {
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(1.9rem, 4.6vw, 2.6rem);
+  letter-spacing: -0.01em;
+}
+
+/* ---------- footer ---------- */
+
+.foot {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 30px 24px 44px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.foot .copy { margin: 0; }
+
+.links { display: flex; flex-wrap: wrap; gap: 20px; }
+
+.links a { text-decoration: none; transition: color 0.2s ease; }
+.links a:hover { color: var(--accent); }
+
+/* ---------- legal documents ---------- */
+/* Privacy, Terms and account deletion share the landing page's shell and
+   palette; only the prose measure and rhythm are set here. */
+
+.doc {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 64px 24px 100px;
+}
+
+.doc .eyebrow { margin-bottom: 14px; }
+
+.doc h1 {
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  line-height: 1.15;
+}
+
+.doc .updated {
+  margin: 14px 0 0;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+.doc .rule {
+  height: 1px;
+  margin: 30px 0 8px;
+  background: var(--hairline);
+}
+
+.doc h2 {
+  margin: 42px 0 12px;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 1.5rem;
+  letter-spacing: -0.01em;
+}
+
+.doc h3 {
+  margin: 30px 0 10px;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 1.18rem;
+}
+
+.doc p,
+.doc li {
+  color: var(--prose);
+  font-size: 1rem;
+}
+
+.doc p { margin: 0 0 16px; }
+
+.doc ul,
+.doc ol {
+  margin: 0 0 18px;
+  padding-left: 1.3em;
+}
+
+.doc li { margin: 0 0 8px; }
+
+.doc a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+}
+
+.doc strong { font-weight: 600; color: var(--text); }
+
+/* The fused ivory callout the old pages used for the fastest route. */
+.doc .summary {
+  margin: 26px 0 34px;
+  padding: 20px 22px;
+  background: rgba(255, 253, 249, 0.62);
+  border: 1px solid var(--hairline);
+  border-radius: 16px;
+}
+
+.doc .summary p:last-child { margin-bottom: 0; }
+
+.doc .button {
+  display: inline-flex;
+  align-items: center;
+  margin: 6px 0 22px;
+  padding: 12px 22px;
+  border-radius: 999px;
+  background: var(--pill);
+  color: var(--pill-text);
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.doc .button:hover { transform: translateY(-1px); opacity: 0.92; }
+
+.doc .imprint {
+  margin: 56px 0 0;
+  padding-top: 22px;
+  border-top: 1px solid var(--hairline);
+  font-size: 0.86rem;
+  color: var(--muted);
+}
+
+@media (max-width: 700px) {
+  .doc { padding: 44px 22px 76px; }
+  .doc h2 { font-size: 1.35rem; margin-top: 36px; }
+}
+
+/* ---------- phones ---------- */
+/* One column, centered like the rest of the page, with the rhythm pulled in
+   so the sections read as one column instead of drifting apart. */
+
+@media (max-width: 700px) {
+  .nav { padding: 20px 20px 0; }
+
+  .hero { padding: 60px 22px 0; }
+  h1 { font-size: clamp(2rem, 9.5vw, 2.75rem); }
+  .lede { margin-top: 20px; font-size: 1rem; }
+
+  .badges { margin-top: 32px; gap: 12px; }
+  .badge { width: min(260px, 100%); }
+
+  .shots {
+    display: block;
+    position: relative;
+    margin-top: 68px;
+    padding: 0 18px;
+  }
+
+  .shot { filter: drop-shadow(0 16px 32px rgba(26, 24, 20, 0.18)); }
+
+  /* Bible steps out; Home and Ask stay, overlapped and turned toward
+     each other so the pair reads as one arrangement. */
+  .shot.left { display: none; }
+
+  .shot.main {
+    width: 65%;
+    max-width: 246px;
+    margin: 0 0 0 4%;
+    transform: rotate(-5deg);
+  }
+
+  .shot.right {
+    position: absolute;
+    z-index: 1;
+    top: -5%;
+    right: 4%;
+    width: 54%;
+    max-width: 205px;
+    margin: 0;
+    transform: rotate(7deg);
+  }
+
+  .features {
+    margin-top: 68px;
+    padding: 0 22px;
+    grid-template-columns: 1fr;
+    gap: 34px;
+    text-align: center;
+  }
+
+  .feature h2 { font-size: 1.35rem; }
+  .feature p { max-width: 30em; margin-inline: auto; }
+
+  .verse { margin-top: 76px; }
+  .verse p { font-size: 1.32rem; }
+
+  .cta { margin-top: 76px; padding: 60px 22px 64px; }
+
+  .foot {
+    flex-direction: column;
+    justify-content: center;
+    gap: 16px;
+    padding: 28px 22px 40px;
+  }
+}
