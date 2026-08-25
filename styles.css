@@ -33,7 +33,9 @@ body {
   position: relative;
   min-height: 100vh;
   min-height: 100lvh;
-  background: var(--bg);
+  /* Transparent so the .paper texture (z-index -2) is never painted over;
+     html carries the base colour. */
+  background: transparent;
   color: var(--text);
   font-family: var(--sans);
   line-height: 1.6;
@@ -51,7 +53,10 @@ body {
   inset: 0;
   z-index: -2;
   background-image: url('assets/parchment-tile.jpg');
-  background-size: 100% auto;
+  /* The tile is the texture + its mirror, so 200lvh shows one full pass of
+     the texture per screenful — the same framing the old fixed cover gave. */
+  background-size: 100% 200vh;
+  background-size: 100% 200lvh;
   background-repeat: repeat-y;
   background-position: center top;
   background-color: var(--bg);
