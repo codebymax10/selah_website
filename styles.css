@@ -75,7 +75,11 @@ body {
   left: 0;
   width: 100%;
   min-height: 12px;
-  background-color: var(--bg);
+  /* Must match what the parchment texture actually renders at the bottom of
+     the viewport (not --bg, which is lighter) or the toolbar reads as a pale
+     bar against the page. Safari mutes the sampled colour slightly, so this
+     is nudged a few points lighter than the measured #F0DBC0. */
+  background-color: #F6DFC4;
   pointer-events: none;
 }
 
