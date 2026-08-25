@@ -2,7 +2,7 @@
    Palette mirrors the app (constants/Colors.ts): warm parchment, ink, amber accent. */
 
 :root {
-  --bg: #FAF8F5;
+  --bg: #FBEDD6;
   --bg-tint: #F5EFE5;
   --surface: #FFFFFF;
   --text: #1A1814;
@@ -415,7 +415,7 @@ h1 {
   .lede { margin-top: 20px; font-size: 1rem; }
 
   .badges { margin-top: 32px; gap: 12px; }
-  .badge { width: min(260px, 100%); }
+  .badge { width: min(260px, 100%); justify-content: center; }
 
   .shots {
     display: block;
