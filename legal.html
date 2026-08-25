@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="description" content="Selah legal documents, privacy information, and support.">
   <title>Legal &amp; Support · Selah</title>
   <style>
@@ -18,7 +18,18 @@
 
     * { box-sizing: border-box; }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; background-color: var(--paper); }
+
+    /* iOS 26 Safari samples fixed elements at the viewport edges to tint its toolbar. */
+    .toolbar-tint {
+      position: fixed;
+      bottom: -8px;
+      left: 0;
+      width: 100%;
+      min-height: 12px;
+      background-color: var(--paper);
+      pointer-events: none;
+    }
 
     body {
       margin: 0;
@@ -149,6 +160,7 @@
   </style>
 </head>
 <body>
+  <div class="toolbar-tint" aria-hidden="true"></div>
   <main>
     <header>
       <p class="eyebrow">Selah · Legal &amp; Support</p>
